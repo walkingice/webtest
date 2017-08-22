@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>File uploading</title>
+        <style>
+            form {
+                min-height: 100px;
+                background-color: #DDDDFF;
+                margin: 20px;
+                padding: 20px;
+        }
+        </style>
+    </head>
+    <body>
+        <form action=".">
+            <h2>No accept</h2>
+            <input type="file" name="upload">
+            <input type="submit">
+        </form>
+
+        <form action=".">
+            <h2>accpet="image/*"</h2>
+            <input type="file" name="upload" accept="image/*">
+            <input type="submit">
+        </form>
+
+        <form action=".">
+            <h2>accept=".png,.gif"</h2>
+            <input type="file" name="upload" accept=".png,.gif">
+            <input type="submit">
+        </form>
+
+        <form action=".">
+            <h2>accept="video/*"</h2>
+            <input type="file" name="upload" accept="video/*">
+            <input type="submit">
+        </form>
+
+    </body>
+</html>
