@@ -20,7 +20,11 @@
         </div>
 
         <div class="row">
-            <h2><a href="javascript:void(0)" onclick="window.open('./page1.html', 'called window.open')">Window.open</a></h2>
+            <h2><a href="javascript:void(0)" onclick="window.open('./page1.html', 'called window.open')">Window.open, by oncall="..."</a></h2>
+        </div>
+
+        <div class="row">
+            <h2><button id="open_btn">Open by JS</button></h2>
         </div>
 
         <div class="row">
@@ -28,4 +32,11 @@
         </div>
 
     </body>
+    <script>
+        (function() {
+            document.getElementById('open_btn').addEventListener('click', () => {
+                window.open('./page1.html', 'called window.open');
+            });
+        })();
+    </script>
 </html>
