@@ -7,10 +7,19 @@
                 background-color: #DDDDFF;
                 margin: 20px;
                 padding: 20px;
-        }
+            }
+            div.log {
+                background-color: #EEEEE;
+                margin: 20px;
+                padding: 20px;
+            }
         </style>
     </head>
     <body>
+        <div class="log">
+            <div>Log:</div>
+            <span id="log_area"></span>
+        </div>
         <div class="row">
             <h2><a href="./page1.html">Normal link</a></h2>
         </div>
@@ -36,6 +45,18 @@
         (function() {
             document.getElementById('open_btn').addEventListener('click', () => {
                 window.open('./page1.html', 'called window.open');
+            });
+
+            let logArea = document.getElementById('log_area');
+
+            let log = (msg) => {
+                let div = document.createElement('div');
+                div.innerHTML = msg;
+                logArea.append(div);
+            }
+
+            window.addEventListener('message', (msg) => {
+                log(msg.data);
             });
         })();
     </script>

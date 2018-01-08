@@ -2,18 +2,44 @@
     <head>
         <title>Page 1</title>
         <style>
+            .id {
+                font-weight: bold;
+            }
+
             div.row {
                 min-height: 100px;
                 background-color: #DDDDFF;
                 margin: 20px;
                 padding: 20px;
-        }
+            }
         </style>
     </head>
     <body>
         <h1>Page 1</h1>
+        <div class="id" id="idArea"></div>
         <div class="row">
             <h2><a href="javascript:void(0)" onclick="window.close()">Window.close</a></h2>
         </div>
+
+        <div class="row">
+            <h2>Close and send ID</h2>
+            <button id="btn_close">Window.close</button>
+        </div>
+
+        <script>
+            (() => {
+                let id = parseInt(Math.random() * 100000);
+                let idArea = document.getElementById('idArea');
+                idArea.innerText = "Random ID: " + id;
+
+                document.getElementById('btn_close').addEventListener('click', () => {
+                    if (window.opener != null) {
+                        window.opener.postMessage('window closed, id = ' + id, "*");
+                    }
+
+                    window.close();
+                });
+            })();
+        </script>
     </body>
 </html>
