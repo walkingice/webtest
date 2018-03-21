@@ -27,12 +27,12 @@
         </div>
 
         <script>
-            (() => {
-                let id = parseInt(Math.random() * 100000);
-                let idArea = document.getElementById('idArea');
+            (function() {
+                var id = parseInt(Math.random() * 100000);
+                var idArea = document.getElementById('idArea');
                 idArea.innerText = "Random ID: " + id;
 
-                document.getElementById('btn_close').addEventListener('click', () => {
+                document.getElementById('btn_close').addEventListener('click', function() {
                     if (window.opener != null) {
                         window.opener.postMessage('window closed, id = ' + id, "*");
                     }

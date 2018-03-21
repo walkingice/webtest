@@ -92,19 +92,19 @@
     </body>
     <script>
         (function() {
-            document.getElementById('open_btn').addEventListener('click', () => {
+            document.getElementById('open_btn').addEventListener('click', function() {
                 window.open('./page1.html', 'called window.open');
             });
 
-            let logArea = document.getElementById('log_area');
+            var logArea = document.getElementById('log_area');
 
-            let log = (msg) => {
-                let div = document.createElement('div');
+            var log = function(msg) {
+                var div = document.createElement('div');
                 div.innerHTML = msg;
                 logArea.append(div);
             }
 
-            window.addEventListener('message', (msg) => {
+            window.addEventListener('message', function(msg) {
                 log(msg.data);
             });
         })();
