@@ -94,6 +94,12 @@
             <p>To open a new self-close window</p>
         </div>
 
+        <div class="row">
+            <h2><button style="font-size: 25px;" id="open_windows_btn">Open several self-close pages</button></h2>
+            <p>To open sevaral new self-close windows</p>
+            <div id="open_windows_msg"></div>
+        </div>
+
     </body>
     <script>
         (function() {
@@ -111,6 +117,36 @@
 
             window.addEventListener('message', function(msg) {
                 log(msg.data);
+            });
+
+            document.getElementById('open_windows_btn').addEventListener('click', function() {
+                var btnDom = document.getElementById('open_windows_btn');
+                var msgDom = document.getElementById('open_windows_msg');
+
+                var seconds = 9;
+                var size = 3;
+                var period = Math.floor(seconds / size);
+
+                btnDom.disabled = true;
+                var interval = setInterval(function() {
+
+                    seconds--;
+
+                    if (seconds< 0) {
+                        btnDom.disabled = false;
+                        clearInterval(interval);
+                        msgDom.innerText = '';
+                        return;
+                    }
+
+                    if (seconds % period  === 0 && size > 0) {
+                        window.open('./selfclose.html');
+                        size --;
+                    }
+
+                    msgDom.innerText = seconds + ' seconds, ' + size + ' windows are waiting for opening';
+
+                }, 1000);
             });
         })();
     </script>
