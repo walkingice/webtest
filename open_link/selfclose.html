@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Page self-close</title>
+        <style>
+            .id {
+                font-weight: bold;
+            }
+
+            div.row {
+                min-height: 100px;
+                background-color: #DDDDFF;
+                margin: 20px;
+                padding: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Page self-close</h1>
+        <div class="row">
+            <h2>How I Learned to Stop Worrying and Love the Bomb</h2>
+            <h3 id="counter"></h3>
+        </div>
+
+        <script>
+            (function() {
+                var count = 5;
+                var counter = document.getElementById('counter');
+                counter.innerText = 'This page will self-close in ' + count + ' seconds';
+                var interval = setInterval(function() {
+                    count--;
+                    counter.innerText = 'This page will self-close in ' + count + ' seconds';
+                    if (count < 0) {
+                        clearInterval(interval);
+                        window.close();
+                        counter.innerText = 'called window.close()......Boooooooom';
+                    }
+                }, 1000);
+            })();
+        </script>
+    </body>
+</html>
