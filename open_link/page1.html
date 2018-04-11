@@ -32,6 +32,8 @@
                 var idArea = document.getElementById('idArea');
                 idArea.innerText = "Random ID: " + id;
 
+                document.title = 'Page 1, random id = ' + id;
+
                 document.getElementById('btn_close').addEventListener('click', function() {
                     if (window.opener != null) {
                         window.opener.postMessage('window closed, id = ' + id, "*");
