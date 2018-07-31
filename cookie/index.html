@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <meta charset="utf-8"/ >
+        <title>Open Link</title>
+        <style>
+            .description {
+                font-size: 15px;
+                margin: 20px;
+                padding: 20px;
+                font-style: oblique;
+            }
+            div.row {
+                min-height: 50px;
+                background-color: #DDDDFF;
+                margin: 20px;
+                padding: 20px;
+            }
+
+            div.info {
+                background-color: #EEEEE;
+                margin: 20px;
+                padding: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <p class="description">
+            A page to test existence of cookie
+        </p>
+        <div class="info">
+            <div>Your cookie: <input id="cookie" disabled="true" placeholder="None" style="color:#000; font-weight: bold; font-size: 15px;"/></div>
+        </div>
+
+        <div class="row">
+            <h3>Set Cookie</h3>
+            <input id="inputCookie"/>
+            <div style="margin-top: 20px;">
+                <button id="setBtn" style="background-color: #CCFFCC">Set</button>
+                <button id="delBtn" style="margin-left: 30px; background-color: #FFCCCC;">Delete</button>
+            </div>
+        </div>
+    </body>
+    <script>
+        (function() {
+            var cookie = document.getElementById('cookie');
+            var updateDisplay = function() {
+                cookie.value = document.cookie;
+            };
+
+            updateDisplay();
+
+            var input = document.getElementById('inputCookie');
+
+            document.getElementById('setBtn').addEventListener('click', function() {
+                if (!!input.value) {
+                    document.cookie = input.value;
+                    updateDisplay();
+                } else {
+                    alert("empty!");
+                }
+            });
+
+            document.getElementById('delBtn').addEventListener('click', function() {
+                document.cookie = "";
+                updateDisplay();
+            });
+
+        })();
+    </script>
+</html>
