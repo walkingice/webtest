@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <meta charset="utf-8"/ >
+        <title>LINE Channel</title>
+        <style>
+            body {
+                font-size: 1.5rem;
+            }
+
+            .description {
+                margin: 20px;
+                padding: 20px;
+                font-style: oblique;
+            }
+
+            div.row {
+                min-height: 50px;
+                background-color: #DDDDFF;
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .info {
+                background-color: #EEEEEE;
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .time {
+                margin: 10px;
+                padding: 3px 7px;
+                color: #fff;
+                background-color: #777;
+                border-radius: 6px;
+                font-size: 0.7rem;
+            }
+        </style>
+        <script type="text/javascript" src="https://scdn.line-apps.com/channel/sdk/js/LCSLoader_20150909.js"></script>
+        <script type="text/javascript" src="./hello.js"></script>
+    </head>
+    <body>
+        <h1>LINE Channel</h1>
+        <p class="description">
+            I am learning LINE Channel
+        </p>
+        <div class="row">
+            <a href="lineb://pay/scanBarcode?requestId=123&numbersOnlyAllowed=N&myCodeHidden=Y">QR code</a>
+        </div>
+        <h2>Info</h2>
+        <h2>Debug Logs</h2>
+        <ul id="logs">
+            <li class="info"></li>
+            <li class="info"></li>
+            <li class="info"></li>
+            <li class="info"></li>
+            <li class="info"></li>
+            <li class="info"></li>
+            <li class="info"></li>
+        </ul>
+    <script>
+        window.onLoadFuncs.push(function() {
+            function onDeviceReady(e) {
+                appendLog("onDeviceReady");
+                LCS.Interface.getSessionInfo(function(info) {
+                    appendLog("get session info success");
+                    // success callback
+                    // Show your LINE Name
+                    var elName = document.createElement("h1");
+                    elName.appendChild(document.createTextNode("Hello " + info.displayName));
+                    document.body.appendChild(elName);
+                    // Show your LINE Profile Picture
+                    var elPicture = document.createElement("img");
+                    elPicture.src = info.pictureUrl;
+                    elPicture.width = "128";
+                    elPicture.height = "128";
+                    document.body.appendChild(elPicture);
+                },function() {
+                    appendLog("get session info fail");
+                    // error callback
+                    // do something
+                });
+            }
+            appendLog("register deviceready");
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+            appendLog("register foreground/background")
+            LCS.Interface.onForeground(function() {
+                var msg = "webview on foreground, document.hidden=" + document.hidden;
+                appendLog(msg);
+                console.log(msg);
+            });
+
+            LCS.Interface.onBackground(function() {
+                var msg = "webview on background, document.hidden=" + document.hidden;
+                appendLog(msg);
+                console.log(msg);
+            });
+        });
+    </script>
+</html>
