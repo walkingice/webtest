@@ -2,7 +2,7 @@
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target": {
     "namespace": "android_app",
-    "package_name": "jp.naver.line.android",
-    "sha256_cert_fingerprints": ["E6:82:FE:0B:CD:60:90:7D:FE:D5:15:E0:B8:A4:DE:03:AA:1C:28:1D:11:1A:07:83:39:86:60:2B:60:98:AF:D2"]
+    "package_name": "net.julianchu.applinktest",
+    "sha256_cert_fingerprints": ["FF:8E:2A:66:51:A0:F5:36:98:D8:76:D7:BD:2B:EE:5A:12:70:B2:02:9B:7B:D0:D9:35:99:3E:38:96:A9:DB:81"]
   }
 }]
