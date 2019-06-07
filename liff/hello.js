@@ -29,13 +29,13 @@ function init() {
     });
 }
 
-function initializeApp(data) {
-    document.getElementById('languagefield').textContent = data.language;
-    document.getElementById('viewtypefield').textContent = data.context.viewType;
-    document.getElementById('useridfield').textContent = data.context.userId;
-    document.getElementById('utouidfield').textContent = data.context.utouId;
-    document.getElementById('roomidfield').textContent = data.context.roomId;
-    document.getElementById('groupidfield').textContent = data.context.groupId;
+function initializeApp(lang, context) {
+    document.getElementById('languagefield').textContent = lang;
+    document.getElementById('viewtypefield').textContent = context.viewType;
+    document.getElementById('useridfield').textContent = context.userId;
+    document.getElementById('utouidfield').textContent = context.utouId;
+    document.getElementById('roomidfield').textContent = context.roomId;
+    document.getElementById('groupidfield').textContent = context.groupId;
 }
 
 window.onload = function() {
@@ -45,10 +45,12 @@ window.onload = function() {
         alert('No LIFF SDK ?!');
     } else {
         appendLog("init LIFF....");
-        liff.init(function (data) {
-            appendLog("LIFF initialized");
-            initializeApp(data);
-        }, function(e) {
+        liff.init({"liffId": "1564460433-w30g6zmn"})
+        .then(function(msg) {
+            appendLog("LIFF initialized", msg);
+            initializeApp(liff.getLanguage(), liff.getContext());
+        })
+        .catch(function(e) {
             appendLog(e.toString());
         });
     }
